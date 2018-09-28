@@ -1,12 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
 
-console.log("lalalla");
-
 
 function generateProduct() {
 	const color = ['red', 'blue', 'pink']
 	const material = ['wood', 'plastic', 'metal']
-	const thing = ['balloon', 'bicycle', 'hammer', 'wrench']
+	const namn = ['balloon', 'bicycle', 'hammer', 'wrench']
 	function randomElement(list) {
 		let r = Math.random() * list.length;
 		return list[Math.floor(r)];
@@ -14,7 +12,7 @@ function generateProduct() {
 
 	let c = randomElement(color);
 	let m = randomElement(material);
-	let t = randomElement(thing);
+	let t = randomElement(namn);
 	return `${c} ${m} ${t}`;
 }
 
