@@ -2,20 +2,35 @@ const MongoClient = require('mongodb').MongoClient;
 
 
 function generateProduct() {
-	const color = ['red', 'blue', 'pink']
-	const material = ['wood', 'plastic', 'metal']
-	const namn = ['balloon', 'bicycle', 'hammer', 'wrench']
+	const color = ['red', 'blue', 'pink', 'black', 'grey', 
+					'maroon', 'white', 'orange', 'green', 
+					'violet', 'indigo', 'magenta', 'brown']
+	const brand = ['Volvo', 'Toyota', 'Ford', 'Tesla', 'BMW',
+					'Audi', 'Cadillac', 'Chevrolet', 'Dodge',
+					'FIAT', 'Hyundai', 'Jeep', 'KIA', 'Nissan']
+	const name = ['passenger car', 'utility vehicle', 'truck', 
+					'bus', 'SUV', 'motorcycle']
+	const condition = ['new', 'used']
+
 	function randomElement(list) {
 		let r = Math.random() * list.length;
 		return list[Math.floor(r)];
 	}
 
 	let c = randomElement(color);
-	let m = randomElement(material);
-	let t = randomElement(namn);
-	return `${c} ${m} ${t}`;
+	let b = randomElement(brand);
+	let n = randomElement(name);
+	let con = randomElement(condition);
+	return {
+		namn: n,
+		color: c,
+		brand: b,
+		model: Math.floor(Math.random() * 118) + 1900,
+		condition: con,
+		price: Math.floor(Math.random() * 200000) + 10000
+	};
 }
 
-let products = generateProduct();
-console.log(products);
+let cars = generateProduct();
+console.log(cars);
 
