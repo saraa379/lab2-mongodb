@@ -1,23 +1,23 @@
-//Upgift 1
-//1.Skapar slumpmässiga 10st dokument och lägger till 
-//dem i carsCollection
+//Upgift 2
+//lägga in 1000 dokument i en lokal MongoDB-databas  
 
 const MongoClient = require('mongodb').MongoClient;
 
 const url = 'mongodb://127.0.0.1:27017';
-const databaseName = 'productsdb';
-const collectionName = 'carsCollection';
+const databaseName = 'furnituredb';
+const collectionName = 'furnitureCollection';
 
 
 function generateProduct() {
 	const color = ['red', 'blue', 'pink', 'black', 'grey', 
 					'maroon', 'white', 'orange', 'green', 
 					'violet', 'indigo', 'magenta', 'brown']
-	const category = ['Volvo', 'Toyota', 'Ford', 'Tesla', 'BMW',
-					'Audi', 'Cadillac', 'Chevrolet', 'Dodge',
-					'FIAT', 'Hyundai', 'Jeep', 'KIA', 'Nissan']
-	const name = ['passenger car', 'utility vehicle', 'truck', 
-					'bus', 'SUV', 'motorcycle']
+	const category = ['Yorkshire', 'Octavia', 'Michigan', 'Ludvig', 'Isadora']
+	const name = ['bed', 'table', 'chair', 'coffee table', 'coat stand',
+					'cupboard', 'desk', 'wardrobe', 'bedside table', 'bookcase',
+					'mirror', 'clock', 'dressing table', 'filling cabinet', 'tv stand',
+					'sofa', 'sideboard', 'chair', 'coffee table', 'cupboard',
+					'bookshelf', 'armchair', 'chest of drawers', 'stool']
 	const condition = ['new', 'used']
 
 	function randomElement(list) {
@@ -35,11 +35,11 @@ function generateProduct() {
 		category: cat,
 		model: Math.floor(Math.random() * 118) + 1900,
 		condition: con,
-		price: Math.floor(Math.random() * 200000) + 10000
+		price: Math.floor(Math.random() * 10000) + 1000
 	};
 }
 
-function getCarList(number) {
+function getFurnitureList(number) {
 	let carList = [];
 	while( number > 0 ) {
 		carList.push( generateProduct() );
@@ -56,14 +56,14 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 		console.log('Could not connect! Error: ', err);
 		return;
 	}
-	const productsdb = client.db(databaseName);
+	const furnituredb = client.db(databaseName);
 	console.log('We are connected to productsdb');
-	const carsCollection = productsdb.collection(collectionName);
+	const furnitureCollection = furnituredb.collection(collectionName);
 
 	//inserts 10 randomn cars into carsCollection
-	let numCars = 10;
-	let carList = getCarList(numCars);
-	carsCollection.insertMany(carList, (err) => {
+	let numFurniture = 10;
+	let furnitureList = getFurnitureList(numFurniture);
+	furnitureCollection.insertMany(furnitureList, (err) => {
 		if( err ) {
 			console.log('Failed to insert data. ', err);
 			client.close();
