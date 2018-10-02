@@ -1,11 +1,11 @@
-//Upgift 2
-//lägga in 1000 dokument i en lokal MongoDB-databas  
+//Upgift 3
+//skapa collection och att lägga till och ta bort index från databasen. 
 
 const MongoClient = require('mongodb').MongoClient;
 
 const url = 'mongodb://127.0.0.1:27017';
 const databaseName = 'furnituredb';
-const collectionName = 'furnitureCollection';
+const collectionName = 'furnitureCollection3';
 
 
 function generateProduct() {
@@ -58,12 +58,12 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 	}
 	const furnituredb = client.db(databaseName);
 	console.log('We are connected to productsdb');
-	const furnitureCollection = furnituredb.collection(collectionName);
+	const furnitureCollection3 = furnituredb.collection(collectionName);
 
 	//inserts 10 randomn cars into carsCollection
-	let numFurniture = 1000;
+	let numFurniture = 1000000;
 	let furnitureList = getFurnitureList(numFurniture);
-	furnitureCollection.insertMany(furnitureList, (err) => {
+	furnitureCollection3.insertMany(furnitureList, (err) => {
 		if( err ) {
 			console.log('Failed to insert data. ', err);
 			client.close();
