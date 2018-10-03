@@ -57,7 +57,7 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 		return;
 	}
 	const furnituredb = client.db(databaseName);
-	console.log('We are connected to productsdb');
+	console.log('We are connected to furnituredb');
 	const furnitureCollection = furnituredb.collection(collectionName);
 
 	//inserts 10 randomn cars into carsCollection

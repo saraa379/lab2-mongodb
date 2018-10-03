@@ -1,5 +1,5 @@
 //Upgift 3
-//skapa collection och att lägga till och ta bort index från databasen. 
+//skapa collection för index 
 
 const MongoClient = require('mongodb').MongoClient;
 
@@ -57,11 +57,11 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 		return;
 	}
 	const furnituredb = client.db(databaseName);
-	console.log('We are connected to productsdb');
+	console.log('We are connected to furnituredb');
 	const furnitureCollection3 = furnituredb.collection(collectionName);
 
 	//inserts 10 randomn cars into carsCollection
-	let numFurniture = 1000000;
+	let numFurniture = 3000000;
 	let furnitureList = getFurnitureList(numFurniture);
 	furnitureCollection3.insertMany(furnitureList, (err) => {
 		if( err ) {
